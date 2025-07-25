@@ -19,11 +19,12 @@ public:
 	static Vector2 Up;
 	static Vector2 Right;
 
-private:
+public:
 	// x/y 좌표
 	int x = 0;
 	int y = 0;
 
+private:
 	// 문자열 변수
 	char* value = nullptr;
 

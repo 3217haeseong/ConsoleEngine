@@ -19,10 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Level\Level.cpp" />
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Core\RTTI.h" />
+    <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Engine.h" />
     <ClInclude Include="Math\Vector2.h" />
