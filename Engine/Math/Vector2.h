@@ -10,6 +10,7 @@ public:
 	
 	Vector2 operator+(const Vector2& other) const;
 	Vector2 operator-(const Vector2& other) const;
+	bool operator==(const Vector2& other) const;
 
 	//문자열로 출력.
 	const char* ToString();

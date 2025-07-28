@@ -7,7 +7,7 @@ TestActor::TestActor() : Actor('P',Color::Red)
 {
 }
 
-void TestActor::Tick(float deltaTime)
+void TestActor::Tick(float deltaTime) 
 {
 	super::Tick(deltaTime);
 
