@@ -32,7 +32,9 @@ void Level::AddActor(Actor* newActor)
 
 	// push_back/emplace_back : 배열 맨 뒤에 새로운 항목 추가하는 함수.
 	actors.emplace_back(newActor);
-	//actors.push_back(newActor);
+
+	// 오너십 설정.
+	newActor->SetOwner(this);
 	
 }
 // 엔진 이벤트 함수.

@@ -1,5 +1,11 @@
 #include "Player.h"
 #include "Engine.h"
+#include "Game/Game.h"
+#include "Input.h"
+#include "Level/Level.h"
+#include "Interface/ICanPlayerMove.h"
+
+#include <iostream>
 
 Player::Player(const Vector2& position)
 	: Actor('P', Color::Red,position)
@@ -8,43 +14,84 @@ Player::Player(const Vector2& position)
 	SetSortingOrder(3);
 }
 
+void Player::BeginPlay()
+{
+	super::BeginPlay();
+
+	// 인터페이스 얻어오기
+	if (GetOwner())
+	{
+		canPlayerMoveInterface = dynamic_cast<ICanPlayerMove*>(GetOwner());
+
+		if (canPlayerMoveInterface)
+		{
+			std::cout << "Can not cast owner level to ICanPlayerMove.\n";
+		}
+	}
+}
+
 void Player::Tick(float deltaTime)
 {
 	Actor::Tick(deltaTime);
 
-	if (Engine::Get().GetKeyDown(VK_ESCAPE))
+	if (Input::Get().GetKeyDown(VK_ESCAPE))
 	{
-		Engine::Get().Quit();
+		//Engine::Get().Quit();
+		//QuitGame();
+		Game::Get().ToggleMenu();
 		return;
 	}
 
 	// 입력 처리.
-	if (Engine::Get().GetKeyDown(VK_RIGHT))
+
+	// 이동 로직 - 이동하기 전에 이동할 위치로 갈 수 있는지 판단 후 이동.
+	if (Input::Get().GetKeyDown(VK_RIGHT))
 	{
-		Vector2 position = Position();
-		position.x += 1;
-		SetPosition(position);
+		// 이동 전에 이동 가능한지 확인.
+		if (canPlayerMoveInterface->CanPlayerMove(
+			Position(),
+			Vector2(Position().x + 1, Position().y)))
+		{
+			Vector2 position = Position();
+			position.x += 1;
+			SetPosition(position);
+		}
+
+		
 	}
 
-	if (Engine::Get().GetKeyDown(VK_LEFT))
+	if (Input::Get().GetKeyDown(VK_LEFT))
 	{
-		Vector2 position = Position();
-		position.x -= 1;
-		SetPosition(position);
+		bool result = canPlayerMoveInterface->CanPlayerMove(Position(), Vector2(Position().x - 1, Position().y));
+		
+		if (result)
+		{
+			Vector2 position = Position();
+			position.x -= 1;
+			SetPosition(position);
+
+		}
 	}
 
-	if (Engine::Get().GetKeyDown(VK_UP))
+	if (Input::Get().GetKeyDown(VK_UP))
 	{
-		Vector2 position = Position();
-		position.y -= 1;
-		SetPosition(position);
+
+		if (canPlayerMoveInterface->CanPlayerMove(Position(), Vector2(Position().x, Position().y - 1)))
+		{
+			Vector2 position = Position();
+			position.y -= 1;
+			SetPosition(position);
+		}
 	}
 
-	if (Engine::Get().GetKeyDown(VK_DOWN))
+	if (Input::Get().GetKeyDown(VK_DOWN))
 	{
-		Vector2 position = Position();
-		position.y += 1;
-		SetPosition(position);
+		if (canPlayerMoveInterface->CanPlayerMove(Position(), Vector2(Position().x, Position().y + 1)))
+		{
+			Vector2 position = Position();
+			position.y += 1;
+			SetPosition(position);
+		}
 	}
 
 }

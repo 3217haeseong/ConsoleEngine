@@ -20,17 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Level\Level.cpp" />
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\RTTI.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Engine.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -113,7 +116,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy *.h ..\Includes /y /e</Command>
+      <Command>xcopy *.h ..\Includes /y /e
+
+xcopy ..\Settings $(OutDir)..\Settings\ /y /e</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy $(OutDir)\Engine.lib ..\Lib\Engine\ /y
@@ -135,7 +140,9 @@ xcopy $(OutDir)\Engine.dll ..\Lib\Engine\ /y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy *.h ..\Includes /y /e</Command>
+      <Command>xcopy *.h ..\Includes /y /e
+
+xcopy ..\Settings $(OutDir)..\Settings\ /y /e</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy $(OutDir)\Engine.lib ..\Lib\Engine\ /y
@@ -155,7 +162,9 @@ xcopy $(OutDir)\Engine.dll ..\Lib\Engine\ /y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy *.h ..\Includes /y /e</Command>
+      <Command>xcopy *.h ..\Includes /y /e
+
+xcopy ..\Settings $(OutDir)..\Settings\ /y /e</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy $(OutDir)\Engine.lib ..\Lib\Engine\ /y
@@ -177,7 +186,9 @@ xcopy $(OutDir)\Engine.dll ..\Lib\Engine\ /y</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy *.h ..\Includes /y /e</Command>
+      <Command>xcopy *.h ..\Includes /y /e
+
+xcopy ..\Settings $(OutDir)..\Settings\ /y /e</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy $(OutDir)\Engine.lib ..\Lib\Engine\ /y
